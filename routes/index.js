@@ -1,7 +1,9 @@
 var express = require("express");
 var router = express.Router();
 var mongoose = require("mongoose");
-var Reservation = require("../models/reservationModel");
+var Reservation = require("../models/reservationModel"),
+  Room = require("../models/roomModel");
+
 var helper = require("../helper/helper");
 const randomstring = require("randomstring");
 
@@ -16,8 +18,16 @@ router.get("/about", function (req, res, next) {
 });
 
 /* GET home page. */
-router.get("/rooms", function (req, res, next) {
-  res.render("rooms", { title: "Express" });
+router.get("/rooms", async function (req, res, next) {
+  var rooms = await Room.find().lean()
+  res.render("rooms", { room: rooms });
+});
+
+/* GET room information. */
+router.get("/room", async function (req, res, next) {
+  var id = helper.deepSanitize(req.query.id)
+  var roomInfo = await Room.findOne({_id:id}).lean()
+  res.render("room-information", { room: roomInfo });
 });
 
 /* Reservation endpoints */
@@ -47,7 +57,7 @@ router.post("/reserve-room", async function (req, res, next) {
     return res.status(500).send("Error reserving room");
   }
 
-  return res.status(200).send("Room reserved successfully")
+  return res.status(200).send("Room reserved successfully");
 });
 
 /* GET home page. */

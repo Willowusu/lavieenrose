@@ -37,28 +37,30 @@
             </ul>
         </section>
 
+       
         <section class="probootstrap-section">
             <div class="container">
                 <div class="row">
+                <% room.forEach(function(item,index){ %>
 
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="probootstrap-room">
-                            <a href="#"><img src="images/img_4.jpg" alt=" " class="img-responsive"></a>
+                            <a href="/room?id=<%= item._id %>"><img src="<%= item.images.image1 %>" alt=" " class="img-responsive"></a>
                             <div class="text">
-                                <h3>Classic Room</h3>
-                                <p>Starting from <strong>$29.00/Night</strong></p>
+                                <h3><%= item.name %></h3>
+                                <p>Starting from <strong>$<%= item.price %>.00/Night</strong></p>
                                 <div class="post-meta mb30">
                                     <ul>
-                                        <li><span class="review-rate">4.7</span> <i class="icon-star"></i> 252 Reviews
+                                        <li><span class="review-rate"><%= item.rating %></span> <i class="icon-star"></i> 252 Reviews
                                         </li>
-                                        <li><i class="icon-user2"></i> 3 Guests</li>
+                                        <li><i class="icon-user2"></i> <%= item.guests %> Guests</li>
                                     </ul>
                                 </div>
-                                <p><a href="#" class="btn btn-primary" role="button">Reserve now for $29.00</a></p>
+                                <p><a href="/room?id=<%= item._id %>" class="btn btn-primary" role="button">Reserve now for $<%= item.price %>.00</a></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <!-- <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="probootstrap-room">
                             <a href="#"><img src="images/img_1.jpg" alt=" " class="img-responsive"></a>
                             <div class="text">
@@ -145,8 +147,10 @@
                                 <p><a href="#" class="btn btn-primary" role="button">Reserve now for $29.00</a></p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="clearfix visible-sm-block"></div>
+
+                    <% }) %>
 
                 </div>
 
