@@ -11,6 +11,7 @@
     <!-- START: header -->
 
     <%- include ../views/partials/header.ejs %>
+    <%- include ../views/partials/modals/3dModal.ejs %>
 
         <!-- END: header -->
 
@@ -52,23 +53,22 @@
             </div>
             <div class="row">
                 <div class="col-md-12 probootstrap-relative">
-                    <div class="owl-carousel owl-carousel-carousel">
+                    <div class="owl-carousel owl-carousel-carousel" id="images">
                         <div class="item">
                             <div class="probootstrap-room">
-                                <a href="#"><img src="<%= room.images.image1 %>" alt=" " class="img-responsive"></a>
+                                <img src="<%= room.images.image1 %>" alt=" " class="img-responsive">
                                
                             </div>
                         </div>
                         <div class="item">
                             <div class="probootstrap-room">
-                                <a href="#"><img src="<%= room.images.image2 %>" alt=" " class="img-responsive"></a>
-                                
+                                <img src="<%= room.images.image2 %>" alt=" " class="img-responsive">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                        <div class="col-md-3 form-group probootstrap-cta-button-wrap"><a href="https://canvas.io/viewer/9WeH-j0O?instacad"  target="_blank" class="btn btn-primary">View in 3d</a>
+                        <div class="col-md-3 form-group probootstrap-cta-button-wrap roomIn3d"><a href="#!" class="btn btn-primary">View in 3d</a>
                         </div>
         </div>
     </section>
@@ -107,6 +107,14 @@
 
             <%- include ../views/partials/scripts.ejs %>
 
+<script>
+    $(".roomIn3d").on("click", function () {
+        $("#exampleModalCenter").modal("show");
+    })
+
+    const gallery = new Viewer(document.getElementById('images'));
+
+</script>
 
 </body>
 

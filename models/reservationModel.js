@@ -18,12 +18,20 @@ const reservationSchema = new Schema({
     type: String,
     required: true,
   },
+  roomInformation: {
+    type: Object,
+    required: true,
+  },
   arrivalDate: {
     type: Date,
     required: true,
   },
   departureDate: {
     type: Date,
+    required: true,
+  },
+  daysBooked: {
+    type: Number,
     required: true,
   },
   adults: {
@@ -41,8 +49,12 @@ const reservationSchema = new Schema({
   },
   code: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
+  totalPrice: {
+    type: mongoose.Decimal128,
+    required: true,
+  },
 });
 
 // Compile model from schema

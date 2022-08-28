@@ -42,8 +42,16 @@
                 <div class="row probootstrap-gutter40">
                     <div class="col-md-8">
                         <h2 class="mt0">Reservation Form</h2>
+
+
+
                         <form action="/reserve-room" method="post" class="probootstrap-form">
                             <div class="row">
+                                <% if(message.length> 0){ %>
+                                    <div class="col-12 alert alert-danger">
+                                    <%= message %>
+                                    </div>
+                                        <% } %>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="fname">First Name</label>
@@ -114,10 +122,10 @@
                                             <i class="icon icon-chevron-down"></i>
                                             <select name="adults" id="adults" class="form-control" required>
                                                 <option value="">Number of Adults</option>
-                                                <option value="1">0</option>
-                                                <option value="2">1</option>
-                                                <option value="3">2</option>
-                                                <option value="4">3+</option>
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
                                             </select>
                                         </div>
                                     </div>
@@ -129,10 +137,10 @@
                                             <i class="icon icon-chevron-down"></i>
                                             <select name="children" id="children" class="form-control" required>
                                                 <option value="">Number of Children</option>
-                                                <option value="1">0</option>
-                                                <option value="2">1</option>
-                                                <option value="3">2</option>
-                                                <option value="4">3+</option>
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
                                             </select>
                                         </div>
 

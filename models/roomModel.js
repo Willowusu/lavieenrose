@@ -7,7 +7,7 @@ const roomSchema = new Schema({
     required: true,
   },
   price: {
-    type: Number,
+    type: mongoose.Decimal128,
     required: true,
   },
   rating: {
@@ -20,7 +20,7 @@ const roomSchema = new Schema({
   },
   images: {
     type: Object,
-  }
+  },
 });
 
 // Compile model from schema
