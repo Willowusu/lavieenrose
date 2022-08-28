@@ -1,4 +1,5 @@
-Room.insertMany(
+exports.createRooms = async function(){
+  Room.insertMany(
   [
     {
       //classic room, grand deluxe room, ultra superior room, presidential
@@ -61,3 +62,4 @@ Room.insertMany(
     console.log(err);
   }
 );
+}
