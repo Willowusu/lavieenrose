@@ -1,6 +1,4 @@
-exports.createRooms = async function(){
-  try{
-  await Room.insertMany(
+ Room.insertMany(
   [
     {
       //classic room, grand deluxe room, ultra superior room, presidential
@@ -63,8 +61,4 @@ exports.createRooms = async function(){
     console.log(err);
   }
 );
-  }
-  catch(error){
-    console.log("Error creating rooms: ", error)
-  }
-}
+
