@@ -6,12 +6,27 @@
             <div class="modal-header">
                 <!-- <h5 class="modal-title" id="exampleModalLongTitle"> </h5> -->
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" style="color:white">&times;</span>
+                    <span aria-hidden="true" style="color:black">&times;</span>
                 </button>
             </div>
             <div class="modal-body justify-content-center">
-                <iframe src= "<%= room.images.Image3d %>" height="700" width="100%" marginheight="40"
-                    frameborder="0"></iframe>
+                <model-viewer src="/images/Scaniverse2022-08-20152832.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls
+                    poster="poster.webp" shadow-intensity="1">
+                    <div class="progress-bar hide" slot="progress-bar">
+                        <div class="update-bar"></div>
+                    </div>
+                    <button slot="ar-button" id="ar-button">
+                        View in your space
+                    </button>
+                    <div id="ar-prompt">
+                        <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+                    </div>
+                </model-viewer>
+                <!-- Use it like any other HTML element -->
+                <!-- <img src="/images/35996912.jpg" alt=""  height="700" width="100%"> -->
+               
+                <!-- <iframe src= "<%= room.images.Image3d %>" height="700" width="100%" marginheight="40"
+                    frameborder="0"></iframe> -->
             </div>
         </div>
     </div>

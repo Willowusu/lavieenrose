@@ -19,7 +19,7 @@ router.get("/about", function (req, res, next) {
 });
 
 /* GET home page. */
-router.get("/rooms", async function (req, res, next) {
+router.get("/all-rooms", async function (req, res, next) {
   var rooms = await Room.find().lean();
   res.render("rooms", { room: rooms });
 });
