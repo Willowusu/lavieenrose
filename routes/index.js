@@ -28,7 +28,6 @@ router.get("/all-rooms", async function (req, res, next) {
 router.get("/room", async function (req, res, next) {
   var id = helper.deepSanitize(req.query.id);
   var roomInfo = await Room.findOne({ _id: id }).lean();
-  console.log(roomInfo)
   res.render("room-information", { room: roomInfo, roomLink: roomInfo.images.Image3d });
 });
 
@@ -56,7 +55,6 @@ router.post("/reserve-room", async function (req, res, next) {
   /* Calculating the number of days between the check-in date and the check-out date. */
 
   daysBetweenLodge = departureDate.diff(arrivalDate, "days");
-  console.log(daysBetweenLodge);
   /**
    * The function calculates the total price of the room based on the number of days between the
    * check-in and check-out dates
@@ -69,13 +67,11 @@ router.post("/reserve-room", async function (req, res, next) {
     } else {
       totalPrice = roomPrice * daysBetweenLodge;
     }
-    console.log(roomPrice, daysBetweenLodge);
     return totalPrice.toFixed(2);
   }
   //check if max capacity of room
   var adultGuests = details.adults;
   var childrenGuests = details.children;
-  console.log(adultGuests, childrenGuests, roomInformation.guests);
   if ((Number(adultGuests) + Number(childrenGuests)) > roomInformation.guests) {
     req.flash(
       "message",
