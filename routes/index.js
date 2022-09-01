@@ -75,7 +75,8 @@ router.post("/reserve-room", async function (req, res, next) {
   //check if max capacity of room
   var adultGuests = details.adults;
   var childrenGuests = details.children;
-  if (adultGuests + childrenGuests > roomInformation.guests) {
+  console.log(adultGuests, childrenGuests, roomInformation.guests);
+  if ((Number(adultGuests) + Number(childrenGuests)) > roomInformation.guests) {
     req.flash(
       "message",
       "Guests booked are more than required number for room."
