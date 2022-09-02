@@ -73,17 +73,17 @@ router.post("/reserve-room", async function (req, res, next) {
   var adultGuests = details.adults;
   var childrenGuests = details.children;
   if ((Number(adultGuests) + Number(childrenGuests)) > roomInformation.guests) {
-    req.flash(
-      "message",
-      "Guests booked are more than required number for room."
-    );
-        res.redirect("/reservation");
-
-    return false;
+    return res
+      .status(500)
+      .send({
+        status: "failed",
+        message: "Guests booked are more than required number for room.",
+      });
   } else if (adultGuests + childrenGuests <= 0) {
-    req.flash("message", "Guests should be more than 0.");
-    res.redirect("/reservation");
-    return false;
+     return res.status(500).send({
+       status: "failed",
+       message: "Guests should be more than 0.",
+     });
   }
 
   try {
@@ -102,8 +102,8 @@ router.post("/reserve-room", async function (req, res, next) {
       daysBooked: daysBetweenLodge,
     });
   } catch (error) {
-    console.log(error);
-    return res.status(500).send("Error reserving room");
+    console.log("Error reserving room:", error);
+    return res.status(500).send({status: "failed", message:"Error reserving room"});
   }
 
   let reservationInfo = await Reservation.findOne({ code: code }).lean();
