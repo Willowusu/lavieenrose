@@ -28,7 +28,6 @@ router.get("/all-rooms", async function (req, res, next) {
 router.get("/room", async function (req, res, next) {
   var id = helper.deepSanitize(req.query.id);
   var roomInfo = await Room.findOne({ _id: id }).lean();
-  console.log(roomInfo)
   res.render("room-information", { room: roomInfo, roomLink: roomInfo.images.Image3d });
 });
 

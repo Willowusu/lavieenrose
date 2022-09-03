@@ -84,11 +84,6 @@
                                             </option>
                                             <% }) %>
                                     </select>
-
-
-
-
-
                                 </div>
                             </div>
                             <div class="row">
@@ -203,6 +198,16 @@
 
 
                 <script>
+                    //when document loads select room
+                    $(document).ready(function () {
+                        const params = new Proxy(new URLSearchParams(window.location.search), {
+                            get: (searchParams, prop) => searchParams.get(prop),
+                        });
+                        // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+                        let value = params.room_id; // "some_value"
+                        $("#room").val(value)
+                        //$(`#room option[value='${value}']`).attr("selected", "selected");
+                        });
                     function renderErrorMessage(message){
                         return ` <div class="col-12 alert alert-danger">
                             ${message}
