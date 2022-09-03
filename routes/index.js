@@ -28,13 +28,14 @@ router.get("/all-rooms", async function (req, res, next) {
 router.get("/room", async function (req, res, next) {
   var id = helper.deepSanitize(req.query.id);
   var roomInfo = await Room.findOne({ _id: id }).lean();
+  console.log(roomInfo)
   res.render("room-information", { room: roomInfo, roomLink: roomInfo.images.Image3d });
 });
 
 /* Reservation endpoints */
 router.get("/reservation" , async function (req, res, next) {
   var rooms = await Room.find().lean();
-  res.render("reservation", { room: rooms, message: req.flash("message") });
+  res.render("reservation", { room: rooms });
 });
 
 router.post("/reserve-room", async function (req, res, next) {
@@ -106,9 +107,9 @@ router.post("/reserve-room", async function (req, res, next) {
     return res.status(500).send({status: "failed", message:"Error reserving room"});
   }
 
-  let reservationInfo = await Reservation.findOne({ code: code }).lean();
+ // let reservationInfo = await Reservation.findOne({ code: code }).lean();
 
-  return res.status(200).render("receipt", { room: reservationInfo });
+  return res.status(200).send({status:"success", message: code});
 });
 
 /* GET home page. */
@@ -119,6 +120,16 @@ router.get("/blog", function (req, res, next) {
 /* GET home page. */
 router.get("/contact", function (req, res, next) {
   res.render("contact", { title: "Express" });
+});
+
+/* GET receipt page. */
+router.get("/receipt", async function (req, res, next) {
+  var details = helper.deepSanitize(req.query);
+  var code = details.code;
+  console.log(code)
+  let reservationInfo = await Reservation.findOne({ code: code }).lean();
+
+  return res.render("receipt", { room: reservationInfo });
 });
 
 module.exports = router;

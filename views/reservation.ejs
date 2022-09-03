@@ -233,7 +233,9 @@
 
                         /* Alerts the results */
                         posting.done(function (data) {
-                            //
+                            if(data.status == "success"){
+                                window.location.replace(`/receipt?code=${data.message}`);
+                            }
                         });
                         posting.fail(function (err) {
                             $(".errorMessage").append(renderErrorMessage(err.responseJSON.message))
