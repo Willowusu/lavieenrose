@@ -26,19 +26,30 @@ router.get("/all-rooms", async function (req, res, next) {
 
 /* GET room information. */
 router.get("/room", async function (req, res, next) {
+ /* Getting the room information from the database. */
   var id = helper.deepSanitize(req.query.id);
+  try{
   var roomInfo = await Room.findOne({ _id: id }).lean();
+  }catch(err){
+    console.log("Error finding room:", err)
+  }
   res.render("room-information", { room: roomInfo, roomLink: roomInfo.images.Image3d });
 });
 
 /* Reservation endpoints */
 router.get("/reservation" , async function (req, res, next) {
+  try{
+/* Getting all the rooms from the database. */
   var rooms = await Room.find().lean();
+  } catch(err){
+    console.log("Error getting all rooms", error)
+  }
   res.render("reservation", { room: rooms });
 });
 
 router.post("/reserve-room", async function (req, res, next) {
   var details = helper.deepSanitize(req.body);
+/* Generating a random string of 7 characters. */
   var code = randomstring.generate(7);
   var totalPrice, daysBetweenLodge, roomInformation, roomPrice;
   //TODO: check if code is already in use
@@ -85,7 +96,7 @@ router.post("/reserve-room", async function (req, res, next) {
        message: "Guests should be more than 0.",
      });
   }
-
+/* Creating a reservation in the database. */
   try {
     await Reservation.create({
       firstName: details.fname,
@@ -125,8 +136,14 @@ router.get("/contact", function (req, res, next) {
 router.get("/receipt", async function (req, res, next) {
   var details = helper.deepSanitize(req.query);
   var code = details.code;
-  console.log(code)
-  let reservationInfo = await Reservation.findOne({ code: code }).lean();
+  var reservationInfo;
+/* Trying to find a reservation with the code that was sent in the request. If it finds it, it renders
+the receipt page with the reservation information. If it doesn't find it, it logs an error. */
+  try{
+   reservationInfo = await Reservation.findOne({ code: code }).lean();
+  }catch(err){
+    console.log("Error getting room", err)
+  }
 
   return res.render("receipt", { room: reservationInfo });
 });
