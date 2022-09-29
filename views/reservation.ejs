@@ -10,7 +10,260 @@
 <body>
 
     <!-- START: header -->
+    <!DOCTYPE html>
 
+    <html lang="en">
+    
+    <head>
+        <%- include ../views/partials/head.ejs %>
+    
+    </head>
+    
+    <body>
+    
+        <!-- START: header -->
+    
+        <%- include ../views/partials/header.ejs %>
+    
+            <!-- END: header -->
+    
+            <section class="probootstrap-slider flexslider probootstrap-inner">
+                <ul class="slides">
+                    <li style="background-image: url(images/bestrooms.webp);" class="overlay">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="probootstrap-slider-text text-center">
+                                        <p><img src="images/curve_white.svg" class="seperator probootstrap-animate"
+                                                alt="Free HTML5 Bootstrap Template"></p>
+                                        <h1 class="probootstrap-heading probootstrap-animate">Book A Room</h1>
+                                        <div class="probootstrap-animate probootstrap-sub-wrap">Far far away, behind the
+                                            word
+                                            mountains, far from the countries Vokalia and Consonantia, there live the blind
+                                            texts.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+    
+            <section class="probootstrap-section">
+                <div class="container">
+                    <div class="row probootstrap-gutter40">
+                        <div class="col-md-8">
+                            <h2 class="mt0">Reservation Form</h2>
+    
+    
+    
+                            <form action="/reserve-room" method="post" class="probootstrap-form" id="reserveRoomForm">
+                                <div class="row">
+                                  
+                                    <div class="errorMessage"></div>
+                                       
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="fname">First Name</label>
+                                                    <input type="text" class="form-control" id="fname" name="fname"
+                                                        maxlength="15" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="lname">Last Name</label>
+                                                    <input type="text" class="form-control" id="lname" name="lname"
+                                                        maxlength="15" required>
+                                                </div>
+                                            </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-mail"></i>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="room">Room</label>
+                                    <div class="form-field">
+                                        <i class="icon icon-chevron-down"></i>
+                                        <select name="room" id="room" class="form-control" required>
+                                            <% room.forEach(function(item,index){ %>
+    
+                                                <option value="<%= item._id %>">
+                                                    <%= item.name %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="date-arrival">Arrival</label>
+                                            <div class="form-field">
+                                                <i class="icon icon-calendar2"></i>
+                                                <input type="text" class="form-control" id="date-arrival" name="arrivalDate"
+                                                    required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="date-departure">Departure</label>
+                                            <div class="form-field">
+                                                <i class="icon icon-calendar2"></i>
+                                                <input type="text" class="form-control" name="departureDate"
+                                                    id="date-departure" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="row mb30">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="adults">Adults</label>
+                                            <div class="form-field">
+                                                <i class="icon icon-chevron-down"></i>
+                                                <select name="adults" id="adults" class="form-control" required>
+                                                    <option value="">Number of Adults</option>
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="children">Children</label>
+                                            <div class="form-field">
+                                                <i class="icon icon-chevron-down"></i>
+                                                <select name="children" id="children" class="form-control" required>
+                                                    <option value="">Number of Children</option>
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit"
+                                        value="Reserve">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <h2 class="mt0">Feedback</h2>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                                there
+                                live the blind texts. Separated they live in Bookmarksgrove right at the coast of the
+                                Semantics,
+                                a large language ocean.</p>
+                            <p><a href="#" class="btn btn-primary" role="button">Send Message</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <section class="probootstrap-half">
+                <div class="image" style="background-image: url(images/courtyard.jpg);"></div>
+                <div class="text">
+                    <div class="probootstrap-animate fadeInUp probootstrap-animated">
+                        <h2 class="mt0">Best 5 Star hotel</h2>
+                        <p><img src="images/curve_white.svg" class="seperator" alt="Free HTML5 Bootstrap Template"></p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                                    there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
+                                    the
+                                    Semantics, a large language ocean.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>A small river named Duden flows by their place and supplies it with the necessary
+                                    regelialia.
+                                    It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+                                </p>
+                            </div>
+                        </div>
+                        <p><a href="#" class="link-with-icon white">Learn More <i class=" icon-chevron-right"></i></a></p>
+                    </div>
+                </div>
+            </section>
+    
+    
+            <!-- START: footer -->
+            <%- include ../views/partials/footer.ejs %>
+    
+                <!-- END: footer -->
+    
+                <%- include ../views/partials/scripts.ejs %>
+    
+    
+    
+    
+                    <script>
+                        //when document loads select room
+                        $(document).ready(function () {
+                            const params = new Proxy(new URLSearchParams(window.location.search), {
+                                get: (searchParams, prop) => searchParams.get(prop),
+                            });
+                            // Get the value of query parameter "room_id" 
+                            let value = params.room_id; // "some_value"
+                            $("#room").val(value)
+                            });
+                        function renderErrorMessage(message){
+                            return ` <div class="col-12 alert alert-danger">
+                                ${message}
+                                        </div>`
+                        }
+                        /* attach a submit handler to the form */
+                        $("#reserveRoomForm").submit(function (event) {
+    
+                            /* stop form from submitting normally */
+                            event.preventDefault();
+    
+                            /* get the action attribute from the <form action=""> element */
+                            var $form = $(this),
+                                url = $form.attr('action');
+    
+                            /* Send the data using post with element id name and name2*/
+                            var posting = $.post(url, {
+                                fname: $('#fname').val(),
+                                lname: $('#lname').val(),
+                                email: $('#email').val(),
+                                room: $('#room').val(),
+                                arrivalDate: $('#date-arrival').val(),
+                                departureDate: $('#date-departure').val(),
+                                adults: $('#adults').val(),
+                                children: $('#adults').val(),
+    
+                            });
+    
+                            /* Alerts the results */
+                            posting.done(function (data) {
+                                if(data.status == "success"){
+                                    window.location.replace(`/receipt?code=${data.message}`);
+                                }
+                            });
+                            posting.fail(function (err) {
+                                $(".errorMessage").append(renderErrorMessage(err.responseJSON.message))
+                              
+                                console.log(err.responseJSON.message)
+                            });
+                        });
+                    </script>
+    
+    </body>
+    
+    </html>
     <%- include ../views/partials/header.ejs %>
 
         <!-- END: header -->

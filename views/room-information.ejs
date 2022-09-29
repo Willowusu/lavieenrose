@@ -14,7 +14,141 @@
     <%- include ../views/partials/modals/3dModal.ejs %>
 
         <!-- END: header -->
+        <!DOCTYPE html>
 
+        <html lang="en">
+        
+        <head>
+            <%- include ../views/partials/head.ejs %>
+        </head>
+        
+        <body>
+        
+            <!-- START: header -->
+        
+            <%- include ../views/partials/header.ejs %>
+            <%- include ../views/partials/modals/3dModal.ejs %>
+        
+                <!-- END: header -->
+        
+                <section class="probootstrap-slider flexslider probootstrap-inner">
+                    <ul class="slides">
+                        <li style="background-image: url(images/slider_1.jpg);" class="overlay">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="probootstrap-slider-text text-center">
+                                            <p><img src="images/curve_white.svg" class="seperator probootstrap-animate"
+                                                    alt="Free HTML5 Bootstrap Template"></p>
+                                            <h1 class="probootstrap-heading probootstrap-animate"><%= room.name %></h1>
+                                            <div class="probootstrap-animate probootstrap-sub-wrap">The <%= room.name %> is all about finding your power. Whether it is moving business forward with creative decisions or
+                                                using our
+                                                platform to empower local artists and creatives - we recognize who we are, know that we have a voice and we use it
+                                                to
+                                                build the creative good in all people.</div>
+                                                <div class="form-group probootstrap-cta-button-wrap" style="padding-top: 15px;"><a href="/reservation?room_id=<%= room._id %>" class="btn btn-primary">Reserve Now</a>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+        
+              
+        
+            <section class="probootstrap-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 probootstrap-relative">
+                            <h3 class="mt0 mb30">Room Images</h3>
+                            <ul class="probootstrap-owl-navigation absolute right">
+                                <li><a href="#" class="probootstrap-owl-prev"><i class="icon-chevron-thin-left"></i></a></li>
+                                <li><a href="#" class="probootstrap-owl-next"><i class="icon-chevron-thin-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 probootstrap-relative">
+                            <div class="owl-carousel owl-carousel-carousel" id="images">
+                                <div class="item">
+                                    <div class="probootstrap-room">
+                                        <img src="<%= room.images.image1 %>" alt=" " class="img-responsive">
+                                       
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="probootstrap-room">
+                                        <img src="<%= room.images.image2 %>" alt=" " class="img-responsive">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="probootstrap-room">
+                                        <img src="<%= room.images.image3 %>" alt=" " class="img-responsive">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="probootstrap-room">
+                                        <img src="<%= room.images.image4 %>" alt=" " class="img-responsive">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                <div class="col-md-3 form-group probootstrap-cta-button-wrap roomIn3d"><a href="#!" class="btn btn-primary">View in 3d</a>
+                                </div>
+                </div>
+            </section>
+        
+                <section class="probootstrap-half">
+                    <div class="image" style="background-image: url(images/slider_2.jpg);"></div>
+                    <div class="text">
+                        <div class="probootstrap-animate fadeInUp probootstrap-animated">
+                            <h2 class="mt0">Best 5 Star hotel</h2>
+                            <p><img src="images/curve_white.svg" class="seperator" alt="Free HTML5 Bootstrap Template"></p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>The <%= room.name %> is elegantly furnished with handmade furniture include luxury en-suite facilities with complimentary
+                                    amenities pack, flat screen LCD TV, tea/coffee making facilities, fan, hairdryer and the finest pure white linen and
+                                    towels.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                </div>
+                            </div>
+                            <p><a href="#" class="link-with-icon white">Learn More <i class=" icon-chevron-right"></i></a></p>
+                        </div>
+                    </div>
+                </section>
+        
+               
+        
+                <!-- <section>
+                    <iframe src="https://canvas.io/viewer/9WeH-j0O?instacad" height="200" width="300" title="Iframe Example"></iframe>
+                </section> -->
+        
+                <!-- START: footer -->
+                <%- include ../views/partials/footer.ejs %>
+        
+                    <!-- END: footer -->
+        
+        
+        
+                    <%- include ../views/partials/scripts.ejs %>
+        
+        <script>
+            $(".roomIn3d").on("click", function () {
+                $("#exampleModalCenter").modal("show");
+            })
+        
+            const gallery = new Viewer(document.getElementById('images'));
+        
+        </script>
+        
+        </body>
+        
+        </html>
         <section class="probootstrap-slider flexslider probootstrap-inner">
             <ul class="slides">
                 <li style="background-image: url(images/slider_1.jpg);" class="overlay">
